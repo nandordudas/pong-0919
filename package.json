@@ -1,0 +1,18 @@
+{
+  "name": "workspace",
+  "version": "0.1.0",
+  "packageManager": "pnpm@8.7.5",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.16.0",
+    "pnpm": ">=8.6.0"
+  },
+  "scripts": {
+    "dedupe": "pnpm dedupe --check || pnpm dedupe",
+    "upgrade": "taze -I"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.43.0",
+    "eslint": "^8.49.0"
+  }
+}

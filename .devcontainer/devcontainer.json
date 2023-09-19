@@ -1,0 +1,81 @@
+{
+  "name": "Pong 09.19",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "features": {
+    "ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {
+      "omzPlugins": "https://github.com/z-shell/F-Sy-H https://github.com/zsh-users/zsh-autosuggestions",
+      "plugins": "git F-Sy-H zsh-autosuggestions"
+    },
+    "ghcr.io/stuartleeks/dev-container-features/shell-history:0": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "eamodio.gitlens",
+        "GitHub.vscode-pull-request-github",
+        "IBM.output-colorizer",
+        "mhutchie.git-graph",
+        "mutantdino.resourcemonitor",
+        "Orta.vscode-twoslash-queries",
+        "streetsidesoftware.code-spell-checker",
+        "usernamehw.errorlens",
+        "Vue.volar",
+        "yoavbls.pretty-ts-errors"
+      ],
+      "settings": {
+        "editor.codeActionsOnSave": {
+          "source.fixAll": false,
+          "source.fixAll.eslint": true,
+          "source.organizeImports": false
+        },
+        "editor.detectIndentation": false,
+        "editor.formatOnSave": false,
+        "editor.insertSpaces": true,
+        "editor.rulers": [
+          {
+            "color": "#4f8f3140",
+            "column": 80
+          },
+          {
+            "color": "#a5551f40",
+            "column": 120
+          }
+        ],
+        "editor.tabSize": 2,
+        "editor.wordWrapColumn": 120,
+        "errorLens.excludeBySource": [
+          "cSpell",
+          "eslint"
+        ],
+        "errorLens.fontStyleItalic": true,
+        "errorLens.fontWeight": "100",
+        "eslint.codeActionsOnSave.mode": "all",
+        "eslint.quiet": false,
+        "eslint.validate": [
+          "html",
+          "json",
+          "json5",
+          "jsonc",
+          "markdown",
+          "typescript",
+          "typescriptreact",
+          "vue",
+          "yaml"
+        ],
+        "files.encoding": "utf8",
+        "files.eol": "\n",
+        "files.insertFinalNewline": true,
+        "files.trimTrailingWhitespace": true,
+        "gitlens.codeLens.enabled": false,
+        "gitlens.currentLine.enabled": false,
+        "gitlens.telemetry.enabled": false
+      }
+    }
+  },
+  "postCreateCommand": {
+    "installDependencies": "pnpm install",
+    "setupFolderPrivileges": "sudo chown --recursive node .pnpm-store node_modules"
+  }
+}

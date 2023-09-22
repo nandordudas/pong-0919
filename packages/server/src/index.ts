@@ -8,11 +8,22 @@ import type { Message } from './types'
 
 const logger = createLogger('server:main')
 
+class Channel {
+  public readonly id = randomUUID()
+}
+
 const wss = new WebSocketServer({ port: 8080 })
 const clients = new WeakMap<WebSocket, string>()
+const channels = new WeakMap<Channel, Set<WebSocket>>()
+const lobby = new Channel()
+
+channels.set(lobby, new Set())
+logger('lobby has set')
 
 wss.on('connection', (ws) => {
   send(ws, '{"type":"connected"}')
+  channels.get(lobby)?.add(ws)
+  logger('websocket has added to lobby')
 
   const socketId = randomUUID()
 
@@ -29,5 +40,7 @@ wss.on('connection', (ws) => {
   ws.on('close', () => {
     clients.delete(ws)
     logger('client disconnected %o', { socketId })
+    channels.get(lobby)?.delete(ws)
+    logger('websocket has deleted from lobby')
   })
 })

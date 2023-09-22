@@ -18,8 +18,15 @@ worker.addEventListener('message', (event: MessageEvent<string | Message<string,
   if (event.data === 'connection established')
     worker.postMessage(payload)
 })
+
+function onStartGame() {
+  worker.postMessage({ type: 'Game', value: 'startGame' } as Message<string, any>)
+}
 </script>
 
 <template>
   <div>weirdo</div>
+  <button type="button" @click="onStartGame">
+    start game
+  </button>
 </template>

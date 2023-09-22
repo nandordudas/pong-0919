@@ -5,6 +5,7 @@ import type { Message } from './types'
 
 type EventMap = DefaultEventMap | {
   A: (message: Message<string, any>) => void
+  Game: (message: Message<string, any>) => void
 }
 
 debug.enable('worker:*')
@@ -25,6 +26,13 @@ addEventListener('message', (event: MessageEvent<Message<string, any>>) => {
 eventBus.on('A', (data: Message<string, any>) => {
   loggerEmitter('AHandler %o', data)
   postMessage(data)
+})
+
+eventBus.on('Game', (data: Message<string, any>) => {
+  loggerEmitter('GameHandler %o', data)
+
+  if (data.type === 'Game')
+    send(ws, '{"type":"Game","value":"startGame"}')
 })
 
 ws.addEventListener('message', (event: MessageEvent<string>) => {
